@@ -1,0 +1,25 @@
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+}
+
+.release_table {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+.header {
+  background-color: #F1F1F1;
+  text-align: center;
+  padding: 20px;
+}
+
+.idol_table {
+  border: 1px solid;
+  display: block;
+}
+
+.idol_table td {
+  display: inline-block;
+}
