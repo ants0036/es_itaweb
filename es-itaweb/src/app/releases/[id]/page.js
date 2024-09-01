@@ -25,7 +25,7 @@ export default async function ReleasePage({params}) {
                     const { data: idolData, error: idolError } = await supabase.from('Idols').select().eq('id', val.i_id).single();
                         return (<td key = {key} className = "idol_table">
                             {idolData.f_name} {val.variant}
-                            <IdolCounter i_id = {val.i_id} r_id = {releaseData.id} />
+                            <IdolCounter i_id = {val.i_id} r_id = {releaseData.id} variant = {releaseData.variant} />
                         </td>)})}
             </tr> </tbody></table>
             <hr/>
