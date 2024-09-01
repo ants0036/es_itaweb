@@ -22,7 +22,7 @@ export default async function ReleaseTable() {
                         <tr key={key}>
                             <td>{val.release_date}</td>
                             <Link href={`/releases/${encodeURIComponent(val.id)}`}> {val.name} </Link>
-                            <td>{val.name}</td>
+                            <td>{val.original_name}</td>
                         </tr>
                     )
                 })}
