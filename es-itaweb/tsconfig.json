@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/page.js", "src/app/releases/release_table.js", "src/app/private/page.js", "src/app/releases/[id]/page.js", "src/app/releases/[id]/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/page.tsx", "src/app/releases/release_table.js", "src/app/private/page.js", "src/app/releases/[id]/page.js", "src/app/releases/[id]/page.jsx", "src/app/login/page.jsx"],
   "exclude": ["node_modules"]
 }

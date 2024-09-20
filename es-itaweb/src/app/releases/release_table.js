@@ -10,8 +10,7 @@ export default async function ReleaseTable() {
     const { data: releases } = await supabase.from('Releases').select();
 
     return (
-    <div className = "release_table">
-            <table>
+            <table className="">
                 <tbody>
                 <tr>
                     <th>Release Date</th>
@@ -28,6 +27,5 @@ export default async function ReleaseTable() {
                 })}
                 </tbody>
             </table>
-        </div>
     )
 }
