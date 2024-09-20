@@ -16,7 +16,7 @@ export default async function PrivatePage() {
       <div> 
         <Header/> 
       </div>
-      <div className="flex_center">
+      <div >
         <UserInventory/>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default function Home() {
     <div>
       <div className="flex justify-center"> <Header/> 
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center p-5">
         <ReleaseTable/> 
         <LoginPage/> 
       </div>

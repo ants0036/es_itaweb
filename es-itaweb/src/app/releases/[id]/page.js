@@ -16,63 +16,45 @@ export default async function ReleasePage({params}) {
     return (
         <div> 
             <Header/> 
-            <h2>{releaseData.name}</h2>
-            <p>officially known as: {releaseData.original_name}</p>
-            <MainImage release_name = {releaseData.name}/>
-            <p>Release date: {releaseData.release_date}</p>
-            <p>Individual price: {releaseData.price_indiv}</p>
-            <p>Box price: {releaseData.price_box}</p>
-            <p>Origin Country: {releaseData.origin}</p>
-            <p>Dimensions: {releaseData.dimensions}</p>
-            <table className = "idol_table"> <tbody><tr>
+
+            <div className=" grid-cols-2 flex justify-center">
+            <div className="pr-5"> <MainImage release_name = {releaseData.name}/> </div>
+            <div>
+                <h2>{releaseData.name}</h2>
+                <p>{releaseData.original_name}</p>
+                <p>Release date: {releaseData.release_date}</p>
+                <p>Individual price: {releaseData.price_indiv}</p>
+                <p>Box price: {releaseData.price_box}</p>
+                <p>Origin Country: {releaseData.origin}</p>
+                <p>Dimensions: {releaseData.dimensions}</p>
+            </div>
+            </div>
+            <div className="pt-5 flex flex-wrap justify-center"> 
                 {mergeData.map(async (val, key) => {
                     // fetching the idol for each individual release
                     const { data: idolData, error: idolError } = await supabase.from('Idols').select().eq('id', val.i_id).single();
-                    
+        
                     //CHANGE LATER: spaghetti repeated code.
                     if (val.variant == null) {
                         const { data: countData, error: countError } = await supabase.from('user_data').select('qty').eq('r_id', val.r_id).eq('i_id', val.i_id).eq('user_id', user.id).single();
                         return (
-                            <div>
-                            <td key = {key} className = "idol_table">
-                            {idolData.f_name} {val.variant}
+                            <div className="p-3">
+                            {idolData.f_name}
                             <IdolCounter i_id = {val.i_id} r_id = {releaseData.id} variant = {releaseData.variant} count = {countData}/>
-                        </td>
                         </div>
                         )
                     } else {
                         const { data: countData, error: countError } = await supabase.from('user_data').select().eq('r_id', val.r_id).eq('i_id', val.i_id).is('variant', val.variant).eq('user_id', user.id);
 
                         return (
-                            <div>
+                            <div className="p-3">
                                 {JSON.stringify(countData)} 
-                            <td key = {key} className = "idol_table">
                             {idolData.f_name} {val.variant}
                             <IdolCounter i_id = {val.i_id} r_id = {releaseData.id} variant = {releaseData.variant} count = {countData}/>
-                        </td>
                         </div>
                         )
-                    }
-
-                    // fetching the previous # of each release for the user 
-                    const { data: countData, error: countError } = await supabase.from('user_data').select().eq('r_id', val.r_id).eq('i_id', val.i_id).is('variant', val.variant).eq('user_id', user.id);
-
-                    // passes data to a client-side component that is mutable. 
-                        return (
-                            <div>
-                    {JSON.stringify(countData)} 
-                    {JSON.stringify(countError)} 
-                    {JSON.stringify(val.r_id)} 
-                    {JSON.stringify(val.i_id)} 
-                    {JSON.stringify(val.variant)} 
-                    {JSON.stringify(user.id)} 
-                        <td key = {key} className = "idol_table">
-                            {idolData.f_name} {val.variant}
-                            <IdolCounter i_id = {val.i_id} r_id = {releaseData.id} variant = {releaseData.variant} count = {countData}/>
-                        </td>
-                        </div>
-                        )})}
-            </tr> </tbody></table>
+                    }})}
+            </div>
             <hr/>
             <p>debug. please ignore. release data query:</p>
             {JSON.stringify(releaseData)} 

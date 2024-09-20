@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import HomeImage from './HomeImage.js'
 import Link from 'next/link'
 
 const supabaseUrl = 'https://bdpsygjpfsoaxgcowdbs.supabase.co'
@@ -10,22 +11,16 @@ export default async function ReleaseTable() {
     const { data: releases } = await supabase.from('Releases').select();
 
     return (
-            <table className="">
-                <tbody>
-                <tr>
-                    <th>Release Date</th>
-                    <th>Name</th>
-                </tr>
+        <div className="pt-5 flex flex-wrap justify-items center">
                 {releases.map((val, key) => {
                     return (
-                        <tr key={key}>
-                            <td>{val.release_date}</td>
-                            <Link href={`/releases/${encodeURIComponent(val.id)}`}> {val.name} </Link>
-                            <td>{val.original_name}</td>
-                        </tr>
+                        <div className="p-3" key = {key}>
+                         <a href={`/releases/${encodeURIComponent(val.id)}`}> <HomeImage release_name = {val.name}/> </a> 
+                        <p className="text-xs"> {val.release_date} </p>
+                            <Link className = "text-sky-600" href={`/releases/${encodeURIComponent(val.id)}`}> {val.name} </Link>
+                        </div>
                     )
                 })}
-                </tbody>
-            </table>
+        </div>
     )
 }
