@@ -38,7 +38,7 @@ export default async function ReleasePage({params}) {
                     if (val.variant == null) {
                         const { data: countData, error: countError } = await supabase.from('user_data').select('qty').eq('r_id', val.r_id).eq('i_id', val.i_id).eq('user_id', user.id).single();
                         return (
-                            <div className="p-3">
+                            <div className="p-3" key = {key}>
                             {idolData.f_name}
                             <IdolCounter i_id = {val.i_id} r_id = {releaseData.id} variant = {releaseData.variant} count = {countData}/>
                         </div>
@@ -47,7 +47,7 @@ export default async function ReleasePage({params}) {
                         const { data: countData, error: countError } = await supabase.from('user_data').select().eq('r_id', val.r_id).eq('i_id', val.i_id).is('variant', val.variant).eq('user_id', user.id);
 
                         return (
-                            <div className="p-3">
+                            <div className="p-3" key = {key}>
                                 {JSON.stringify(countData)} 
                             {idolData.f_name} {val.variant}
                             <IdolCounter i_id = {val.i_id} r_id = {releaseData.id} variant = {releaseData.variant} count = {countData}/>
