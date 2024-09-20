@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '../../../utils/supabase/server'
 import UserInventory from './UserInventory.js'
 import Header from '../header/header'
+import UserAnalytics from './UserAnalytics.js'
 
 export default async function PrivatePage() {
   const supabase = createClient()
@@ -17,6 +18,7 @@ export default async function PrivatePage() {
         <Header/> 
       </div>
       <div >
+        <UserAnalytics/>
         <UserInventory/>
       </div>
     </div>
