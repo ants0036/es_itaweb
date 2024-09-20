@@ -1,5 +1,4 @@
-import type { Config } from "tailwindcss";
-const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -8,5 +7,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
-};
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+}
+}
