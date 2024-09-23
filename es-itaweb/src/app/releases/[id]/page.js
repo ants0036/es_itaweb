@@ -1,7 +1,7 @@
-import { createClient } from '../../../../utils/supabase/server'
-import Header from '@/app/header/header';
+import { createClient } from '../../../supabase/server'
+import Header from '@/app/homepage/header';
 import IdolCounter from './idol_counter.js'
-import MainImage from './MainImage.js'
+import MainImage from './main-image.js'
 
 export default async function ReleasePage({params}) {
     const supabase = createClient();
@@ -11,17 +11,17 @@ export default async function ReleasePage({params}) {
     // i've changed the name grabbing for each individual cell but i feel like this is not very optimal in the long run since it's one call for each cell. 
     // MOVE THE BIG LAMBDA INTO ITS OWN FUNCTION?
 
-    const {data: { user }} = await supabase.auth.getUser();
+    const {data:{user}} = await supabase.auth.getUser();
 
     return (
         <div> 
             <Header/> 
-
             <div className=" grid-cols-2 flex justify-center">
             <div className="pr-5"> <MainImage release_name = {releaseData.name}/> </div>
             <div>
-                <h2>{releaseData.name}</h2>
-                <p>{releaseData.original_name}</p>
+                <p className="text-2xl font-semibold">{releaseData.name}</p>
+                <p className="text-xs"> {releaseData.original_name}</p>
+                <br/>
                 <p>Release date: {releaseData.release_date}</p>
                 <p>Individual price: {releaseData.price_indiv}</p>
                 <p>Box price: {releaseData.price_box}</p>
@@ -56,12 +56,6 @@ export default async function ReleasePage({params}) {
                     }})}
             </div>
             <hr/>
-            <p>debug. please ignore. release data query:</p>
-            {JSON.stringify(releaseData)} 
-            <p>merge data query:</p>
-            {JSON.stringify(mergeData)} 
-            <p>user data query:</p>
-            {JSON.stringify(user)} 
         </div>
     )
   }

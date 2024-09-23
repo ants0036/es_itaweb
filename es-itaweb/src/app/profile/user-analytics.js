@@ -1,15 +1,15 @@
-import { createClient } from '../../../utils/supabase/server'
+import { createClient } from '../../supabase/server'
 
 //change spaghetti variable names 
-async function addMoney(money) {
+async function totalSpent(money) {
     var totalspent = 0; 
     for (let i = 0; i < money.length; i++) {
-        const money2 = await money[i]
-        if (money2 == null) {
+        const price = await money[i]
+        if (price == null) {
             continue;
         }
         else {
-            totalspent = totalspent + parseInt(money2, 10)
+            totalspent = totalspent + parseInt(price, 10)
         }
     }
     return totalspent;
@@ -29,15 +29,20 @@ export default async function UserAnalytics() {
         else { return (+rData.price_indiv * +val.qty); }
     })
 
-    let totalspent = addMoney(money);
+    let totalspent = totalSpent(money);
     var totalspentUSD = await totalspent / 144
     var totalspentCAD = await totalspent / 106
 
     return (
-        <div className ="p-5">
-            <p> you have spent {totalspent} yen on enstars merch!! and probably more because of shipping! congrats!!! </p>
-            <p> with the current conversion rate of 144 yen = 1 USD, you have spent {totalspentUSD} USD </p>
-            <p> with the current conversion rate of 106 yen = 1 USD, you have spent {totalspentCAD} CAD </p>
+        <div className="columns-2 w-full p-5 bg-blue-900 text-white flex justify-center">
+            <div className = "pr-3">
+            <p> You have spent <p className="text-xl"> {totalspent} ¥</p>   on enstars merch!! and probably more because of shipping! congrats!!! </p>
+            </div>
+            <div>
+            <p> With the current conversion rate of 144 yen = 1 USD, you have spent </p> <p className="text-xl"> {Math.round(100 * totalspentUSD) /100} USD </p>
+            <p> With the current conversion rate of 106 yen = 1 CAD, you have spent </p> <p className="text-xl"> {Math.round(100 * totalspentCAD) /100} CAD</p> 
+            </div>
+
         </div>
     )
 }

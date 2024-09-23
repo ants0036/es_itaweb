@@ -2,6 +2,7 @@ import { login, signup, signout } from './actions'
 
 export default function LoginPage() {
   return (
+    <div>
     <form>
       <label htmlFor="email">Email:</label>
       <input id="email" name="email" type="email" required />
@@ -13,5 +14,7 @@ export default function LoginPage() {
       <button formAction={signup} className="pr-3 text-sky-600">Sign up</button>
       <button className = "text-sky-600" formAction={signout}>Log out</button>
     </form>
+    <p> changelog 9.23.24: UI overhaul + currency total added</p>
+    </div>
   )
 }

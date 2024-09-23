@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation'
-import { createClient } from '../../../utils/supabase/server'
-import UserInventory from './UserInventory.js'
-import Header from '../header/header'
-import UserAnalytics from './UserAnalytics.js'
+import UserInventory from './user-inventory.js'
+import Header from '../homepage/header.js'
+import UserAnalytics from './user-analytics.js'
+import { createClient } from '../../supabase/server.ts'
 
-export default async function PrivatePage() {
+export default async function ProfilePage() {
   const supabase = createClient()
 
   const { data, error } = await supabase.auth.getUser()

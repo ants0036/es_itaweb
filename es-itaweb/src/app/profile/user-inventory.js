@@ -1,11 +1,15 @@
-import { createClient } from '../../../utils/supabase/server'
-import HomeImage from '../releases/HomeImage';
+import { createClient } from '../../supabase/server'
+import HomeImage from '../releases/home-image';
 
 export default async function UserInventory() {
     const supabase = createClient();
     const {data: { user }} = await supabase.auth.getUser();
     const {data: inventoryData, error: inventoryError} = await supabase.from('user_data').select().eq('user_id', user.id);
     return (
+        <div>
+        <div className ="flex justify-center pt-5">
+            <p className = "text-xl "> Inventory </p>
+        </div>
         <div className="pt-5 flex flex-wrap justify-items center">
                     {inventoryData.map(async (val, key) => {
                         const {data: rData, error: rDataError} = await supabase.from('Releases').select().eq('id', val.r_id).single();
@@ -18,8 +22,7 @@ export default async function UserInventory() {
                             </div>
                         )
                     })}
-            <p> please ignore this is for debug too </p>
-            {JSON.stringify(inventoryData)} 
+        </div>
         </div>
     )
 }

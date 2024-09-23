@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import HomeImage from './HomeImage.js'
+import HomeImage from './home-image.js'
 import Link from 'next/link'
 
 const supabaseUrl = 'https://bdpsygjpfsoaxgcowdbs.supabase.co'
@@ -17,7 +17,7 @@ export default async function ReleaseTable() {
                         <div className="p-3" key = {key}>
                          <a href={`/releases/${encodeURIComponent(val.id)}`}> <HomeImage release_name = {val.name}/> </a> 
                         <p className="text-xs"> {val.release_date} </p>
-                            <Link className = "text-sky-600" href={`/releases/${encodeURIComponent(val.id)}`}> {val.name} </Link>
+                            <Link className = "text-sky-600 font-semibold" href={`/releases/${encodeURIComponent(val.id)}`}> {val.name} </Link>
                         </div>
                     )
                 })}

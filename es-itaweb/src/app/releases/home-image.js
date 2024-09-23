@@ -5,5 +5,5 @@ import { CldImage } from 'next-cloudinary';
 export default function HomeImage ({release_name}) {
     const main_src = release_name.concat(" Main")
     return (
-    <div className="py-2"> <CldImage className = "border-slate-900 border border-solid" width="200" height="200" src= {main_src}sizes="100vw"/> </div>)
+    <div className="py-2"> <CldImage className = "border-slate-900 border border-solid rounded" width="200" height="200" src= {main_src}sizes="100vw"/> </div>)
 }

@@ -1,6 +1,5 @@
 // client-side component to upsert whenever a count is incremeted/decremented. 
 import { update } from '../actions'
-import { fetch_count } from '../actions'
 
 export default function IdolCounter({i_id, r_id, variant, count}) {
     return (<div>
