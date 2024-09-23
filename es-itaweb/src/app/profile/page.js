@@ -3,6 +3,7 @@ import UserInventory from './user-inventory.js'
 import Header from '../homepage/header.js'
 import UserAnalytics from './user-analytics.js'
 import { createClient } from '../../supabase/server.ts'
+import Footer from '../homepage/footer.js'
 
 export default async function ProfilePage() {
   const supabase = createClient()
@@ -21,6 +22,7 @@ export default async function ProfilePage() {
         <UserAnalytics/>
         <UserInventory/>
       </div>
+      <Footer/>
     </div>
   )
 }

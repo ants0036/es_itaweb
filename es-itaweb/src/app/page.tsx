@@ -4,6 +4,7 @@ import Header from './homepage/header.js'
 import './globals.css'
 import 'tailwindcss/tailwind.css'
 import Disclaimer from './homepage/disclaimer.js'
+import Footer from './homepage/footer.js'
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <ReleaseTable />
         <LoginPage />
       </div>
+      <Footer/>
     </div>
   );
 }
