@@ -2,6 +2,7 @@ import { createClient } from '../../../supabase/server'
 import Header from '@/app/homepage/header';
 import IdolCounter from './idol_counter.js'
 import MainImage from './main-image.js'
+import DropdownNEXT from "./dropdown_nextUI.js"
 
 export default async function ReleasePage({params}) {
     const supabase = createClient();
@@ -13,6 +14,25 @@ export default async function ReleasePage({params}) {
 
     const {data:{user}} = await supabase.auth.getUser();
 
+    var idol_names = mergeData.map(async (val, key) => {
+        const { data: idolData, error: idolError } = await supabase.from('Idols').select().eq('id', val.i_id).single()
+        return ({
+            key: String(idolData.f_name),
+            label: String(idolData.f_name)
+        })
+    })
+
+    var arrayOfValues = await Promise.all(idol_names)
+    
+
+    /*const i_dropitems =  idol_names.map ((val, key) => {
+        return ({
+        key,
+        label: val
+    })
+    })*/
+
+    //<DropdownNEXT i_dropitems = {i_dropitems}/>
     return (
         <div> 
             <Header/> 
@@ -27,10 +47,19 @@ export default async function ReleasePage({params}) {
                 <p>Box price: {releaseData.price_box}</p>
                 <p>Origin Country: {releaseData.origin}</p>
                 <p>Dimensions: {releaseData.dimensions}</p>
+                <DropdownNEXT i_dropitems = {arrayOfValues}/>
+                
             </div>
             </div>
             <div className="pt-5 flex flex-wrap justify-center"> 
-                {mergeData.map(async (val, key) => {
+            
+            </div>
+            <hr/>
+        </div>
+    )
+  }
+
+/*{mergeData.map(async (val, key) => {
                     // fetching the idol for each individual release
                     const { data: idolData, error: idolError } = await supabase.from('Idols').select().eq('id', val.i_id).single();
         
@@ -53,9 +82,4 @@ export default async function ReleasePage({params}) {
                             <IdolCounter i_id = {val.i_id} r_id = {releaseData.id} variant = {releaseData.variant} count = {countData}/>
                         </div>
                         )
-                    }})}
-            </div>
-            <hr/>
-        </div>
-    )
-  }
+                    }})}*/
