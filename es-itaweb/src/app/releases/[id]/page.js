@@ -3,6 +3,7 @@ import Header from '@/app/homepage/header';
 import MainImage from './main-image.js'
 import IdolNameButton from './idolname-button.js'
 import Incrementer from './incrementer'
+import Footer from '@/app/homepage/footer';
 
 async function IncrementerImplementation({ params, searchParams }) {
     const supabase = createClient();
@@ -47,7 +48,7 @@ export default async function ReleasePage({ params, searchParams }) {
     return (
         <div>
             <Header />
-            <div className=" grid grid-cols-2">
+            <div className=" grid grid-cols-2 pb-10 ">
                 <div className="flex justify-end px-10">
                     <div className="">
                         <MainImage release_name={releaseData.name} />
@@ -69,11 +70,12 @@ export default async function ReleasePage({ params, searchParams }) {
                         {mergeData.map(async (val, key) => {
                             // fetching the idol for each individual release, then feeding it to a button component
                             const { data: idolData, error: idolError } = await supabase.from('Idols').select().eq('id', val.i_id).single();
-                            return (<IdolNameButton i_id={val.i_id} name={idolData.f_name} r_id={releaseData.id} variant={val.variant} />)
+                            return (<IdolNameButton key = {key} i_id={val.i_id} name={idolData.f_name} r_id={releaseData.id} variant={val.variant} />)
                         })}
                     </div>
                 </div>
-            </div>
+            </div >
+            <Footer/>
         </div>
     )
 }

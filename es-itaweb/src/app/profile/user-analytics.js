@@ -36,7 +36,7 @@ export default async function UserAnalytics() {
     return (
         <div className="columns-2 w-full p-5 bg-blue-900 text-white flex justify-center">
             <div className = "pr-3">
-            <p> You have spent <p className="text-xl"> {totalspent} ¥</p>   on enstars merch!! and probably more because of shipping! congrats!!! </p>
+            <p> You have spent <p className="text-xl"> {totalspent} ¥</p>   on Ensemble Stars!! goods. </p>
             </div>
             <div>
             <p> With the current conversion rate of 144 yen = 1 USD, you have spent </p> <p className="text-xl"> {Math.round(100 * totalspentUSD) /100} USD </p>
