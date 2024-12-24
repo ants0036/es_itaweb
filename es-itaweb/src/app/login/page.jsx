@@ -14,7 +14,7 @@ export default function LoginPage() {
       <button formAction={signup} className="pr-3 text-sky-600">Sign up</button>
       <button className = "text-sky-600" formAction={signout}>Log out</button>
     </form>
-    <p> changelog 9.23.24: UI overhaul + currency total added</p>
+    <p> changelog 12.23.24: selection overhaul</p>
     </div>
   )
 }

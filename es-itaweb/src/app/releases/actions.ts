@@ -16,8 +16,18 @@ export async function update (formData: FormData) {
     const r_id = formData.get('r_id');
     const variant = formData.get('variant');
 
-    const { data, error } = await supabase.from('user_data').upsert({qty: count, user_id: user.id, r_id: r_id, i_id: i_id, variant:variant}, {onConflict: 'r_id, i_id, variant, user_id'})
-    
-    console.log (error)
+    if (variant == "null") {
+        console.log ("null variant")
+        console.log({count}, {i_id}, {r_id}, {variant})
+        const { data, error } = await supabase.from('user_data').upsert({qty: count, user_id: user.id, r_id: r_id, i_id: i_id }, {onConflict: 'r_id, i_id, user_id'})
+        console.log (error)
+        console.log (data)
+    } else {
+        console.log ("filled variant")
+        const { data, error } = await supabase.from('user_data').upsert({qty: count, user_id: user.id, r_id: r_id, i_id: i_id, variant:variant}, {onConflict: 'r_id, i_id, variant, user_id'})
+        console.log (error)
+        console.log (data)
+    }
+
     revalidatePath('/releases/[id]', 'layout')
 }

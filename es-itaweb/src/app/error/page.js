@@ -1,3 +1,10 @@
+import Header from '@/app/homepage/header';
 export default function ErrorPage() {
-    return <p>you might have entered the wrong password or tried to create an account with an email that already has one!! or entered the wrong password sorry!!</p>
-  }
+  return (
+    <div>
+      <Header />
+      <h2>Stand in Error Page</h2>
+      <p>You may have entered the wrong password, or tried to create an account with an email that is already registered.</p>
+    </div>
+  )
+}
