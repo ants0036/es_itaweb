@@ -17,7 +17,7 @@ export default function Changelog() {
                     <p className="text-lg"> Fixed </p>
                     <ul className='list-disc list-inside'>
                         <li>Unauthorized users can select idols inside a release page without leading to an error.</li>
-                        <li>Centered login page so it doesn't float in the corner.</li>
+                        <li>Centered login page so it does not float in the corner.</li>
                         <li>Edge case releases with multiple idols (wkwk trip acrylics) now display every idol in the button.</li>
                     </ul>
                     <p className="text-lg"> Removed </p>
