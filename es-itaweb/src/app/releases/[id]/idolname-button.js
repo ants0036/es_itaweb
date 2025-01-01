@@ -2,10 +2,9 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // a singular, client-side button of an idol's name. selecting the name will add the idol's ID and variant to the current URL. 
-export default function IdolNameButton({ i_id, name, variant }) {
+export default function IdolNameButton({ i_id, name, name2, name3, variant }) {
     const searchParams = new URLSearchParams(useSearchParams().toString());
     const router = useRouter()
-    
     // if the current button is the selected one; 
     if (searchParams.has("i_id", { i_id }.i_id)) {
         if (searchParams.has("variant", JSON.stringify({ variant }.variant))) {
@@ -18,7 +17,7 @@ export default function IdolNameButton({ i_id, name, variant }) {
                         searchParams.append("variant", JSON.stringify({ variant }.variant))
                         router.push(`?${searchParams.toString()}`)
                     }}>
-                        {name} {variant}
+                        {name} {name2} {name3} {variant}
                     </button>
                 </div>)
         }
@@ -33,7 +32,7 @@ export default function IdolNameButton({ i_id, name, variant }) {
                     searchParams.append("variant", JSON.stringify({ variant }.variant))
                     router.push(`?${searchParams.toString()}`)
                 }}>
-                    {name} {variant}
+                    {name} {name2} {name3} {variant}
                 </button>
             </div>
         )

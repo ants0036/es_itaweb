@@ -1,7 +1,6 @@
 import { createClient } from '../../supabase/server'
 
-//change spaghetti variable names 
-async function totalSpent(money) {
+async function calculateTotal(money) {
     var totalspent = 0; 
     for (let i = 0; i < money.length; i++) {
         const price = await money[i]
@@ -29,18 +28,18 @@ export default async function UserAnalytics() {
         else { return (+rData.price_indiv * +val.qty); }
     })
 
-    let totalspent = totalSpent(money);
+    let totalspent = calculateTotal(money);
     var totalspentUSD = await totalspent / 144
     var totalspentCAD = await totalspent / 106
 
     return (
         <div className="columns-2 w-full p-5 bg-blue-900 text-white flex justify-center">
             <div className = "pr-3">
-            <p> You have spent <p className="text-xl"> {totalspent} ¥</p>   on Ensemble Stars!! goods. </p>
+            <p> You have spent <p className="text-xl"> {totalspent} ¥</p> on Ensemble Stars!! goods. </p>
             </div>
             <div>
-            <p> With the current conversion rate of 144 yen = 1 USD, you have spent </p> <p className="text-xl"> {Math.round(100 * totalspentUSD) /100} USD </p>
-            <p> With the current conversion rate of 106 yen = 1 CAD, you have spent </p> <p className="text-xl"> {Math.round(100 * totalspentCAD) /100} CAD</p> 
+            <p> With the current conversion rate of 144 yen = 1 USD, you spent </p> <p className="text-xl"> {Math.round(100 * totalspentUSD) /100} USD </p>
+            <p> With the current conversion rate of 106 yen = 1 CAD, you spent </p> <p className="text-xl"> {Math.round(100 * totalspentCAD) /100} CAD</p> 
             </div>
 
         </div>

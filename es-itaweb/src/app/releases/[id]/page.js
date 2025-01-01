@@ -8,7 +8,15 @@ import Footer from '@/app/homepage/footer';
 async function IncrementerImplementation({ params, searchParams }) {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
-    if (searchParams.i_id != null) {
+
+    // if the user is not logged in;
+    if (user == null) {
+        return (
+            <p> Please log in. </p>
+        )
+    }
+    // if there is currently an idol selected; 
+    else if (searchParams.i_id != null) {
         // fetch the user's data of the current idol.
         const { data: countData, error: countError } = await supabase.from('user_data').select('qty').eq('r_id', params.id).eq('i_id', searchParams.i_id).eq('user_id', user.id).single();
         // fetch the selected idol's information.
@@ -30,7 +38,7 @@ async function IncrementerImplementation({ params, searchParams }) {
                 </div>
             )
         }
-    // case where there is no idol selected yet
+    // no idol selected;
     } else {
         return (
             <p> Please select an Idol. </p>
@@ -62,15 +70,28 @@ export default async function ReleasePage({ params, searchParams }) {
                         <p>Dimensions: {releaseData.dimensions}</p>
                     </div>
                 </div>
-                <div className="flex flex-wrap pr-10">
-                    <div>
+                <div>
+                    <div className ="pb-5">
                         <IncrementerImplementation params={params} searchParams={searchParams} />
                     </div>
                     <div className="flex flex-wrap pr-10">
                         {mergeData.map(async (val, key) => {
-                            // fetching the idol for each individual release, then feeding it to a button component
+                            // query first & second idol 
                             const { data: idolData, error: idolError } = await supabase.from('Idols').select().eq('id', val.i_id).single();
-                            return (<IdolNameButton key = {key} i_id={val.i_id} name={idolData.f_name} r_id={releaseData.id} variant={val.variant} />)
+                            const { data: idolData2, error: idolError2 } = await supabase.from('Idols').select().eq('id', val.i_id2).single();
+                            const idolDataName1 = idolData.f_name
+                            var idolDataName2 = null
+                            var idolDataName3 = null
+
+                            // if there is a second idol, try to query the third. i hate wakuwaku trip stands for making me do this 
+                            if (idolData2 != null) {
+                                idolDataName2 = idolData2.f_name
+                                const { data: idolData3, error: idolError3 } = await supabase.from('Idols').select().eq('id', val.i_id3).single();
+                                if (idolData3 != null) {
+                                    idolDataName3 = idolData3.f_name 
+                                }
+                            }
+                            return (<IdolNameButton key = {key} i_id={val.i_id} name={idolDataName1} name2 = {idolDataName2} name3 = {idolDataName3} r_id={releaseData.id} variant={val.variant} />)
                         })}
                     </div>
                 </div>

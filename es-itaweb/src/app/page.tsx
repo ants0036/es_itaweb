@@ -1,5 +1,5 @@
 import ReleaseTable from './releases/release_table.js';
-import LoginPage from './login/page.jsx';
+import LoginForm from './login/loginform.js';
 import Header from './homepage/header.js'
 import './globals.css'
 import 'tailwindcss/tailwind.css'
@@ -16,7 +16,7 @@ export default function Home() {
       </div>
       <div className="flex justify-center p-5">
         <ReleaseTable />
-        <LoginPage />
+        <LoginForm />
       </div>
       <Footer/>
     </div>
