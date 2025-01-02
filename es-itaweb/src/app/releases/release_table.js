@@ -6,9 +6,25 @@ const supabaseUrl = 'https://bdpsygjpfsoaxgcowdbs.supabase.co'
 const supabaseKey = process.env.SERVICE_KEY
 // shouldn't be using the service key but it's okay for now :sob:
 
-export default async function ReleaseTable() {
+export default async function ReleaseTable({searchParams, user}) {
     const supabase = createClient(supabaseUrl, supabaseKey);
-    const { data: releases } = await supabase.from('Releases').select();
+    var releases; 
+
+    var category = searchParams["category"]
+    var releaseName = searchParams["name"]
+
+    //console.log(category, releaseName)
+    
+    // querying releases based off of searchParams
+    if (category != null && releaseName != null)  {
+        var { data: releases } = await supabase.from('Releases').select().eq("category", category).ilike("name", releaseName);
+    } else if (releaseName != null && category == null) {
+        var { data: releases } = await supabase.from('Releases').select().ilike("name", releaseName);
+    } else if (releaseName == null && category != null) {
+        var { data: releases } = await supabase.from('Releases').select().eq("category", category);
+    } else {
+        var { data: releases } = await supabase.from('Releases').select();
+    }
 
     return (
         <div className="pt-5 flex flex-wrap justify-items center">

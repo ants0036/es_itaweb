@@ -1,5 +1,15 @@
 import Link from 'next/link'
-import LoginStatus from './login-status.js'
+import { createClient } from '@/supabase/server'
+
+async function LoginStatus() {
+    const supabase = createClient()
+  
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data?.user) {
+      return <p> You are not logged in. </p>
+    }
+    return <p> {data.user.email}</p>
+  }
 
 export default function Header() {
     return (

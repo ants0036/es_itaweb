@@ -7,7 +7,6 @@ export default function LoginPage() {
       <Header/>
       <div className="grid place-content-center">
         <LoginForm/>
-        <p> changelog 12.23.24: selection overhaul</p>
       </div>
     </div>
   )

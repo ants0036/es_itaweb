@@ -5,7 +5,7 @@ import UserAnalytics from './user-analytics.js'
 import { createClient } from '../../supabase/server.ts'
 import Footer from '../homepage/footer.js'
 
-export default async function ProfilePage() {
+export default async function ProfilePage({searchParams}) {
   const supabase = createClient()
 
   const { data, error } = await supabase.auth.getUser()
@@ -19,7 +19,7 @@ export default async function ProfilePage() {
         <Header/> 
       </div>
       <div >
-        <UserAnalytics/>
+        <UserAnalytics searchParams = {searchParams}/>
         <UserInventory/>
       </div>
       <Footer/>

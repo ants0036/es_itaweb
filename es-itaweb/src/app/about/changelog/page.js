@@ -1,11 +1,17 @@
 import Header from '@/app/homepage/header';
-import Link from 'next/link';
 
 export default function Changelog() {
     return (
         <div>
             <Header />
             <div className="grid place-content-center">
+            <div className="py-4">
+                    <p className="text-xl">Ver 0.2.02 - Jan 1 2025</p>
+                    <p className="text-lg"> Added </p>
+                    <ul className='list-disc list-inside'>
+                        <li>Search functionionality by both name & category for the main page. </li>
+                    </ul>
+                </div>
                 <div className="py-4">
                     <p className="text-xl">Ver 0.2.01 - Dec 31 2024</p>
                     <p className="text-lg"> Added </p>

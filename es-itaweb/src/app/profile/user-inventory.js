@@ -1,7 +1,9 @@
 import { createClient } from '../../supabase/server'
 import HomeImage from '../releases/home-image';
+import SearchComponent from '../search/search';
 
-export default async function UserInventory() {
+// needs to be overhauled to be the same release table except with a release table 
+export default async function UserInventory({searchParams}) {
     const supabase = createClient();
     const {data: { user }} = await supabase.auth.getUser();
     const {data: inventoryData, error: inventoryError} = await supabase.from('user_data').select().eq('user_id', user.id);
@@ -18,7 +20,7 @@ export default async function UserInventory() {
                             <div className="p-3" key = {key}>
                                 <HomeImage release_name = {rData.name}/>
                                 <p>{rData.name} </p>
-                                   <p> {iData.f_name}{val.variant}   {val.qty}</p>
+                                <p> {iData.f_name}{val.variant}   {val.qty}</p>
                             </div>
                         )
                     })}

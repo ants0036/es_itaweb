@@ -9,7 +9,7 @@ export default function Footer() {
             <p> UI/UX Design: yul</p>
         </div>
         <div className="p-5">
-            <p> This website is not affiliated with Ensemble Stars!!. for official listings of each release, check <a href = "https://pattythree-shop.jp/" className="text-blue-300"> the patty three website.</a> 
+            <p> This website is not affiliated with Ensemble Stars!!. For official listings of each release, check <a href = "https://pattythree-shop.jp/" className="text-blue-300"> the patty three website.</a> 
             </p>
         </div>
     </div>

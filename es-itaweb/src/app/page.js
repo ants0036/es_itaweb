@@ -5,8 +5,9 @@ import './globals.css'
 import 'tailwindcss/tailwind.css'
 import Disclaimer from './homepage/disclaimer.js'
 import Footer from './homepage/footer.js'
+import SearchComponent from './search/search.js';
 
-export default function Home() {
+export default function Home({params, searchParams}) {
   return (
     <div>
       <div className="flex justify-center"> <Header />
@@ -15,7 +16,10 @@ export default function Home() {
         <Disclaimer/>
       </div>
       <div className="flex justify-center p-5">
-        <ReleaseTable />
+        <div>
+          <SearchComponent/>
+          <ReleaseTable params = {params} searchParams = {searchParams}/>
+        </div>
         <LoginForm />
       </div>
       <Footer/>
