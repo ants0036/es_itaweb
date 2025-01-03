@@ -10,7 +10,9 @@ export default function Changelog() {
                     <p className="text-lg"> Added </p>
                     <ul className='list-disc list-inside'>
                         <li>Search functionality to inventory.</li>
+                        <li>Pagination to the home page & profile page.</li>
                         <li>Users can now access individual listing pages from their inventory.</li>
+                        <li>Basic metadata.</li>
                     </ul>
                     <p className="text-lg"> Changed </p>
                     <ul className='list-disc list-inside'>
