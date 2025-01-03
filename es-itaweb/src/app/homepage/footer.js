@@ -4,7 +4,7 @@ export default function Footer() {
     return (
     <div className="columns-2 w-full p-5 bg-blue-900 text-white flex justify-center">
         <div className="">
-            <p> Full Stack Development: b</p>
+            <p> Full Stack Development: nagisafs2</p>
             <p> Database Administration: neo </p>
             <p> UI/UX Design: yul</p>
         </div>

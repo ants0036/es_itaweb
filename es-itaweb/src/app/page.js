@@ -1,11 +1,11 @@
-import ReleaseTable from './releases/release_table.js';
-import LoginForm from './login/loginform.js';
+import ReleaseTable from './releases/release-table.js';
+import LoginForm from './login/login-form.js';
 import Header from './homepage/header.js'
 import './globals.css'
 import 'tailwindcss/tailwind.css'
 import Disclaimer from './homepage/disclaimer.js'
 import Footer from './homepage/footer.js'
-import SearchComponent from './search/search.js';
+import SearchComponent from './search/search-component.js';
 
 export default function Home({params, searchParams}) {
   return (
@@ -17,7 +17,7 @@ export default function Home({params, searchParams}) {
       </div>
       <div className="flex justify-center p-5">
         <div>
-          <SearchComponent/>
+          <SearchComponent params = {""}/>
           <ReleaseTable params = {params} searchParams = {searchParams}/>
         </div>
         <LoginForm />

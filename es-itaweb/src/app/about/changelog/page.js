@@ -5,7 +5,27 @@ export default function Changelog() {
         <div>
             <Header />
             <div className="grid place-content-center">
-            <div className="py-4">
+                <div className="py-4">
+                    <p className="text-xl">Ver 0.2.1 - Jan 2 2025</p>
+                    <p className="text-lg"> Added </p>
+                    <ul className='list-disc list-inside'>
+                        <li>Search functionality to inventory.</li>
+                        <li>Users can now access individual listing pages from their inventory.</li>
+                    </ul>
+                    <p className="text-lg"> Changed </p>
+                    <ul className='list-disc list-inside'>
+                        <li>Refactored the home page in order to abstract code for the profile page.</li>
+                        <li>File names in codebase are now consistent.</li>
+                        <li>"ES Itaweb!!" in header now takes you to home.</li>
+                        <li>Home button is now an about button.</li>
+                        <li>About page looks nicer & now has Nagisa.</li>
+                    </ul>
+                    <p className="text-lg"> Removed </p>
+                    <ul className='list-disc list-inside'>
+                        <li>home-image.js</li>
+                    </ul>
+                </div>
+                <div className="py-4">
                     <p className="text-xl">Ver 0.2.02 - Jan 1 2025</p>
                     <p className="text-lg"> Added </p>
                     <ul className='list-disc list-inside'>

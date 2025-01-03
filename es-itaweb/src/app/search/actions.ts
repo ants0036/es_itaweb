@@ -1,22 +1,24 @@
 "use client"
 import {redirect} from "next/navigation";
+
 export function search (formData: FormData) {
-    const params = formData.get('search') as string;
+    const params = formData.get('params') as string; 
+    const name = formData.get('search') as string;
     const category = formData.get("category") as string;
 
     // if no search was inputted / search reset
-    if (params == '' && category == '') {
+    if (name == '' && category == '') {
         console.log ("option 1")
-        redirect(`/?`)
+        redirect(`/${(params)}?`)
     // if category button was hit but no name 
-    } else if (params == '' && category != '') {
+    } else if (name == '' && category != '') {
         console.log ("option 2")
-        redirect(`/?category=${(category)}`)
+        redirect(`/${(params)}?category=${(category)}`)
     // if name, no category
-    } else if (params != '' && category == '') {
+    } else if (name != '' && category == '') {
         console.log ("option 3")
-        redirect(`/?name=${params.toString()}`)
+        redirect(`/${(params)}?name=${name.toString()}`)
     } else {
-        redirect(`/?category=${(category)}&name=${params.toString()}`)
+        redirect(`/${(params)}?category=${(category)}&name=${name.toString()}`)
     }
 }

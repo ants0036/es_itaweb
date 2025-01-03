@@ -2,11 +2,10 @@
 import { search } from "./actions"
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function SearchComponent() {
+export default function SearchComponent({params}) {
     const SearchBarParams = new URLSearchParams(useSearchParams().toString());
     const router = useRouter()
     const buttonClass = "p-2 rounded hover:bg-blue-100 border border-gray-200"
-    console.log({SearchBarParams})
 
     // buttons are spaghetti but i can't abstract it out with the searchparams?
     return (
@@ -17,13 +16,14 @@ export default function SearchComponent() {
                 <span className="material-symbols-outlined"> search </span>
                 <input className="border border-sky-600" id="search" name="search" type="text"></input>
                 <input type="hidden" id="category" name="category" value={SearchBarParams.get("category")} />
+                <input type="hidden" id="category" name="params" value={params} />
                 <button className="text-sky-600 pl-2" formAction={search}>Search</button>
             </form>
             
             <button className={buttonClass} onClick={() => {
                 SearchBarParams.delete("category")
                 SearchBarParams.delete("name")
-                router.push(`/?`)
+                router.push(`?`)
             }}>
                 All
             </button>

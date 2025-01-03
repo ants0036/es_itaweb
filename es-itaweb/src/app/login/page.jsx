@@ -1,5 +1,5 @@
 import Header from '../homepage/header'
-import LoginForm from './loginform.js'
+import LoginForm from './login-form.js'
 
 export default function LoginPage() {
   return (
