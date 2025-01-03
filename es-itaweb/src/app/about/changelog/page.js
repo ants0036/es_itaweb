@@ -18,7 +18,7 @@ export default function Changelog() {
                     <ul className='list-disc list-inside'>
                         <li>Refactored the home page in order to abstract code for the profile page.</li>
                         <li>File names in codebase are now consistent.</li>
-                        <li>"ES Itaweb!!" in header now takes you to home.</li>
+                        <li>ES Itaweb!! in header now takes you to home.</li>
                         <li>Home button is now an about button.</li>
                         <li>About page looks nicer & now has Nagisa.</li>
                     </ul>
