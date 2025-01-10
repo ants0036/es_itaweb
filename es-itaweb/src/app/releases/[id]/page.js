@@ -78,19 +78,22 @@ export default async function ReleasePage({ params, searchParams }) {
                         {mergeData.map(async (val, key) => {
                             // query first & second idol 
                             const { data: idolData, error: idolError } = await supabase.from('Idols').select().eq('id', val.i_id).single();
-                            const { data: idolData2, error: idolError2 } = await supabase.from('Idols').select().eq('id', val.i_id2).single();
                             const idolDataName1 = idolData.f_name
                             var idolDataName2 = null
                             var idolDataName3 = null
 
                             // if there is a second idol, try to query the third. i hate wakuwaku trip stands for making me do this 
-                            if (idolData2 != null) {
+                            console.log(val.i_id2)
+                            if (val.i_id2 != null) {
+                                const { data: idolData2, error: idolError2 } = await supabase.from('Idols').select().eq('id', val.i_id2).single();
                                 idolDataName2 = idolData2.f_name
-                                const { data: idolData3, error: idolError3 } = await supabase.from('Idols').select().eq('id', val.i_id3).single();
-                                if (idolData3 != null) {
+                                if (val.i_id3 != null) {
+                                    const { data: idolData3, error: idolError3 } = await supabase.from('Idols').select().eq('id', val.i_id3).single();
+                                    console.log("idolData3 != null")
                                     idolDataName3 = idolData3.f_name 
                                 }
                             }
+                            
                             return (<IdolNameButton key = {key} i_id={val.i_id} name={idolDataName1} name2 = {idolDataName2} name3 = {idolDataName3} r_id={releaseData.id} variant={val.variant} />)
                         })}
                     </div>

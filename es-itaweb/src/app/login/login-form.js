@@ -1,4 +1,5 @@
 import { login, signup, signout } from './actions'
+import Link from 'next/link'
 export default function LoginForm() {
     return (
         <div >
@@ -13,7 +14,7 @@ export default function LoginForm() {
             <button formAction={signup} className="pr-3 text-sky-600">Sign up</button>
             <button className="text-sky-600" formAction={signout}>Log out</button>
           </form>
-          <p> changelog 12.31.24: fixed selection system bugs</p>
+          <p>Ver 0.2.11 - <Link href="/about/changelog" className="pt-5 text-sky-600">Changelog</Link> </p>
         </div>
 
     )}

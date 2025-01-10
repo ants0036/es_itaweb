@@ -9,20 +9,16 @@ export default async function UserInventory({searchParams}) {
 
     // spaghetti copy paste from the release table. abstract out later 
     
-    var category = searchParams["category"]
-    var releaseName = searchParams["name"]
-
-    var page = searchParams["page"]
-    if (page == null) {
-        page = 0;
-    }
+    var category = searchParams["category"] ?? ''
+    var releaseName = searchParams["name"] ?? ''
+    var page = searchParams["page"] ?? 0
     
     // querying releases based off of searchParams
-    if (category != null && releaseName != null)  {
+    if (category != '' && releaseName != '')  {
         var { data: releases } = await supabase.from('Releases').select().eq("category", category).ilike("name", releaseName);
-    } else if (releaseName != null && category == null) {
+    } else if (releaseName != '' && category == '') {
         var { data: releases } = await supabase.from('Releases').select().ilike("name", releaseName);
-    } else if (releaseName == null && category != null) {
+    } else if (releaseName == '' && category != '') {
         var { data: releases } = await supabase.from('Releases').select().eq("category", category);
     } else {
         var { data: releases } = await supabase.from('Releases').select();

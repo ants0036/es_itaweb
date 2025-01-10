@@ -7,6 +7,8 @@ export default function SearchComponent({params}) {
     const router = useRouter()
     const buttonClass = "p-2 rounded hover:bg-blue-100 border border-gray-200"
 
+    var category = SearchBarParams.get("category") ?? ''
+
     // buttons are spaghetti but i can't abstract it out with the searchparams?
     return (
         <div>
@@ -15,7 +17,7 @@ export default function SearchComponent({params}) {
             <form>
                 <span className="material-symbols-outlined"> search </span>
                 <input className="border border-sky-600" id="search" name="search" type="text"></input>
-                <input type="hidden" id="category" name="category" value={SearchBarParams.get("category")} />
+                <input type="hidden" id="category" name="category" value={category} />
                 <input type="hidden" id="category" name="params" value={params} />
                 <button className="text-sky-600 pl-2" formAction={search}>Search</button>
             </form>

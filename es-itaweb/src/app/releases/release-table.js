@@ -8,20 +8,16 @@ export default async function ReleaseTable({searchParams}) {
     const supabase = createClient();
     var releases; 
 
-    var category = searchParams["category"]
-    var releaseName = searchParams["name"]
-
-    var page = searchParams["page"]
-    if (page == null) {
-        page = 0;
-    }
+    var category = searchParams["category"] ?? ''
+    var releaseName = searchParams["name"] ?? ''
+    var page = searchParams["page"] ?? 0 
     
     // querying releases based off of searchParams
-    if (category != null && releaseName != null)  {
+    if (category != '' && releaseName != '')  {
         var { data: releases } = await supabase.from('Releases').select().eq("category", category).ilike("name", releaseName).range(parseInt(page)*25, (parseInt(page) + 1) * 25 - 1);
-    } else if (releaseName != null && category == null) {
+    } else if (releaseName != '' && category == '') {
         var { data: releases } = await supabase.from('Releases').select().ilike("name", releaseName).range(parseInt(page)*25, (parseInt(page) + 1) * 25 - 1);
-    } else if (releaseName == null && category != null) {
+    } else if (releaseName == '' && category != '') {
         var { data: releases } = await supabase.from('Releases').select().eq("category", category).range(parseInt(page)*25, (parseInt(page) + 1) * 25 - 1);
     } else {
         var { data: releases } = await supabase.from('Releases').select().range(parseInt(page)*25, (parseInt(page) + 1) * 25 - 1);
