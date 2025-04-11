@@ -6,9 +6,9 @@ async function LoginStatus() {
   
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
-      return <p> You are not logged in. </p>
+      return <Link href="/login"> Log in </Link>
     }
-    return <p> {data.user.email}</p>
+    return <Link href="/login"> Log out </Link>
   }
 
 export default function Header() {

@@ -14,7 +14,7 @@ export default function LoginForm() {
             <button formAction={signup} className="pr-3 text-sky-600">Sign up</button>
             <button className="text-sky-600" formAction={signout}>Log out</button>
           </form>
-          <p>Ver 0.2.11 - <Link href="/about/changelog" className="pt-5 text-sky-600">Changelog</Link> </p>
+          <p className ="pt-10">Ver 0.2.11 - <Link href="/about/changelog" className="pt-10 text-sky-600">Changelog</Link> </p>
         </div>
 
     )}

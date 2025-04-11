@@ -6,7 +6,7 @@ export default function Changelog() {
             <Header />
             <div className="grid place-content-center">
                 <div className="py-4">
-                    <p className="text-xl">Ver 0.2.11 - Jan 3 2024</p>
+                    <p className="text-xl">Ver 0.2.11 - Jan 10 2024</p>
                     <p className="text-lg"> Fixed </p>
                     <ul className='list-disc list-inside'>
                         <li>Value prop on input should not be null warning on search bar.</li>
@@ -14,6 +14,8 @@ export default function Changelog() {
                     <p className="text-lg"> Changed </p>
                     <ul className='list-disc list-inside'>
                         <li>Refactored home & profile logic for less API calls.</li>
+                        <li>Refactored home page layout.</li>
+                        <li>Refactored header to show login/logout button.</li>
                     </ul>
                 </div>
                 <div className="py-4">

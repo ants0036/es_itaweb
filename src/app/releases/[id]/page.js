@@ -24,6 +24,7 @@ async function IncrementerImplementation({ params, searchParams }) {
 
         // case where there is no user data on the selected idol
         if (countData == null) {
+            console.log("countData == null")
             return (
                 <div>
                     <p> You have selected {selectedIdolData.f_name}. You currently own 0 of this idol. </p>
@@ -31,6 +32,7 @@ async function IncrementerImplementation({ params, searchParams }) {
                 </div>
             )
         } else {
+            console.log("countData != null")
             return (
                 <div>
                     <p> You have selected {selectedIdolData.f_name}. You currently own {JSON.stringify(countData.qty)} of this idol. </p>
@@ -83,17 +85,17 @@ export default async function ReleasePage({ params, searchParams }) {
                             var idolDataName3 = null
 
                             // if there is a second idol, try to query the third. i hate wakuwaku trip stands for making me do this 
-                            console.log(val.i_id2)
                             if (val.i_id2 != null) {
                                 const { data: idolData2, error: idolError2 } = await supabase.from('Idols').select().eq('id', val.i_id2).single();
                                 idolDataName2 = idolData2.f_name
+                                console.log("idolDataName2 = idolData2.f_name")
                                 if (val.i_id3 != null) {
                                     const { data: idolData3, error: idolError3 } = await supabase.from('Idols').select().eq('id', val.i_id3).single();
-                                    console.log("idolData3 != null")
+                                    console.log("idolDataName3 = idolData3.f_name")
                                     idolDataName3 = idolData3.f_name 
                                 }
                             }
-                            
+
                             return (<IdolNameButton key = {key} i_id={val.i_id} name={idolDataName1} name2 = {idolDataName2} name3 = {idolDataName3} r_id={releaseData.id} variant={val.variant} />)
                         })}
                     </div>
