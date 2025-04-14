@@ -19,13 +19,13 @@ export default async function ReleaseTable({searchParams}) {
     // querying releases based off of searchParams
     try {
         if (category != '' && releaseName != '')  {
-            var { data: releases } = await supabase.from('Releases').select().eq("category", category).ilike("name", releaseName).range(currentPage, nextPage);
+            var { data: releases } = await supabase.from('Releases').select().eq("category", category).ilike("name", releaseName).range(currentPage, nextPage)
         } else if (releaseName != '' && category == '') {
-            var { data: releases } = await supabase.from('Releases').select().ilike("name", releaseName).range(currentPage, nextPage);
+            var { data: releases } = await supabase.from('Releases').select().ilike("name", releaseName).range(currentPage, nextPage) 
         } else if (releaseName == '' && category != '') {
-            var { data: releases } = await supabase.from('Releases').select().eq("category", category).range(currentPage, nextPage);
+            var { data: releases } = await supabase.from('Releases').select().eq("category", category).range(currentPage, nextPage) 
         } else {
-            var { data: releases } = await supabase.from('Releases').select().range(currentPage, nextPage);
+            var { data: releases } = await supabase.from('Releases').select().range(currentPage, nextPage) 
         }
     
         return (
