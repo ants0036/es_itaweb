@@ -1,4 +1,4 @@
-import Header from '../homepage/header'
+import Header from '../_components/header'
 import LoginForm from './login-form.js'
 
 export default function LoginPage() {

@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 // A sidebar component to filter out items by category or name. 
-export default function SearchSideBar({ params }) {
+export default function CategoryFilter({ params }) {
     const SearchBarParams = new URLSearchParams(useSearchParams().toString());
     const router = useRouter()
     const buttonClass = "p-2 rounded hover:bg-blue-100 border border-gray-200"

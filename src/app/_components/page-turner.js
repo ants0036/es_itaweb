@@ -1,5 +1,4 @@
 "use client"
-import next from "next";
 import { useRouter, useSearchParams } from "next/navigation";
 
 // component at the bottom of every table that controls pagination. 

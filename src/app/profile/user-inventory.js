@@ -1,6 +1,6 @@
 import { createClient } from '../../supabase/server'
 import ReleaseListing from '../releases/release-listing';
-import SearchComponent from '../search/search-component';
+import SearchByName from '../_components/_search/search-by-name';
 
 // needs to be overhauled to be the same release table except with a release table 
 export default async function UserInventory({searchParams}) {
@@ -36,7 +36,7 @@ export default async function UserInventory({searchParams}) {
         <div className ="flex justify-center pt-5">
             <p className = "text-xl "> Inventory </p>
         </div>
-        <SearchComponent params = {"profile"}/>
+        <SearchByName params = {"profile"}/>
         <div className="pt-5 flex flex-wrap justify-items center">
                     {inventoryData.map(async (val, key) => {
                         const {data: rData, error: rDataError} = await supabase.from('Releases').select().eq('id', val.r_id).single();

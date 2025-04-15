@@ -1,4 +1,4 @@
-import Header from '@/app/homepage/header';
+import Header from '@/app/_components/header'
 import Link from 'next/link';
 
 export default function AboutPage() {

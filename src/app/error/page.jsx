@@ -1,4 +1,4 @@
-import Header from '@/app/homepage/header';
+import Header from '@/app/_components/header'
 export default function ErrorPage() {
   return (
     <div>

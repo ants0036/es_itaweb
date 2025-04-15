@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation'
 import UserInventory from './user-inventory.js'
-import Header from '../homepage/header.js'
+import Header from '../_components/header.js'
 import UserAnalytics from './user-analytics.js'
 import { createClient } from '../../supabase/server.ts'
-import Footer from '../homepage/footer.js'
-import PageTurner from '../releases/page-turner.js'
+import Footer from '@/app/_components/footer'
+import PageTurner from '../_components/page-turner.js'
 
 export default async function ProfilePage({searchParams}) {
   const supabase = createClient()

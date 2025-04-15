@@ -1,53 +1,10 @@
 import { createClient } from '../../../supabase/server'
-import Header from '@/app/homepage/header';
-import MainImage from './main-image.js'
+import SquareCloudinaryImage from '@/app/_components/square-cloudinary-image'
 import IdolNameButton from './idolname-button.js'
 import Incrementer from './incrementer'
-import Footer from '@/app/homepage/footer';
+import Footer from '@/app/_components/footer'
 
-async function IncrementerImplementation({ params, searchParams }) {
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-
-    // if the user is not logged in;
-    if (user == null) {
-        return (
-            <p> Please log in. </p>
-        )
-    }
-    // if there is currently an idol selected; 
-    else if (searchParams.i_id != null) {
-        // fetch the user's data of the current idol.
-        const { data: countData, error: countError } = await supabase.from('user_data').select('qty').eq('r_id', params.id).eq('i_id', searchParams.i_id).eq('user_id', user.id).single();
-        // fetch the selected idol's information.
-        const { data: selectedIdolData, error: idolError } = await supabase.from('Idols').select().eq('id', searchParams.i_id).single();
-
-        // case where there is no user data on the selected idol
-        if (countData == null) {
-            console.log("countData == null")
-            return (
-                <div>
-                    <p> You have selected {selectedIdolData.f_name}. You currently own 0 of this idol. </p>
-                    <Incrementer i_id={searchParams.i_id} r_id={params.id} variant={searchParams.variant} count={countData} />
-                </div>
-            )
-        } else {
-            console.log("countData != null")
-            return (
-                <div>
-                    <p> You have selected {selectedIdolData.f_name}. You currently own {JSON.stringify(countData.qty)} of this idol. </p>
-                    <Incrementer i_id={searchParams.i_id} r_id={params.id} variant={searchParams.variant} count={countData} />
-                </div>
-            )
-        }
-    // no idol selected;
-    } else {
-        return (
-            <p> Please select an Idol. </p>
-        )
-    }
-}
-
+// component for a singular merch item. 
 export default async function ReleasePage({ params, searchParams }) {
     const supabase = createClient();
     // query the name, price, etc. of the release
@@ -55,13 +12,52 @@ export default async function ReleasePage({ params, searchParams }) {
     // query the ID of every idol that is inside this release. 
     const { data: mergeData, error: mergeError } = await supabase.from('idol-release merge').select().eq('r_id', params.id);
 
+    async function IncrementerImplementation() {
+        const { data: { user } } = await supabase.auth.getUser();
+    
+        if (user == null) {
+            return (
+                <p> Please log in. </p>
+            )
+        }
+        // if there is currently an idol selected; 
+        else if (searchParams.i_id != null) {
+            // fetch the user's data of the current idol.
+            const { data: countData, error: countError } = await supabase.from('user_data').select('qty').eq('r_id', params.id).eq('i_id', searchParams.i_id).eq('user_id', user.id).single();
+            // fetch the selected idol's information.
+            const { data: selectedIdolData, error: idolError } = await supabase.from('Idols').select().eq('id', searchParams.i_id).single();
+    
+            // case where there is no user data on the selected idol
+            if (countData == null) {
+                return (
+                    <div>
+                        <p> You have selected {selectedIdolData.f_name}. You currently own 0 of this idol. </p>
+                        <Incrementer i_id={searchParams.i_id} r_id={params.id} variant={searchParams.variant} count={countData} />
+                    </div>
+                )
+            } else {
+                return (
+                    <div>
+                        <p> You have selected {selectedIdolData.f_name}. You currently own {JSON.stringify(countData.qty)} of this idol. </p>
+                        <Incrementer i_id={searchParams.i_id} r_id={params.id} variant={searchParams.variant} count={countData} />
+                    </div>
+                )
+            }
+        // no idol selected;
+        } else {
+            return (
+                <p> Please select an Idol. </p>
+            )
+        }
+    }
+
     return (
         <div>
             <Header />
             <div className=" grid grid-cols-2 pb-10 ">
                 <div className="flex justify-end px-10">
                     <div className="">
-                        <MainImage release_name={releaseData.name} />
+                        <SquareCloudinaryImage release_name={releaseData.name} />
                         <p className="text-2xl font-semibold">{releaseData.name}</p>
                         <p className="text-xs"> {releaseData.original_name}</p>
                         <br />

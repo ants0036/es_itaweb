@@ -5,12 +5,16 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 export default function IdolNameButton({ i_id, name, name2, name3, variant }) {
     const searchParams = new URLSearchParams(useSearchParams().toString());
     const router = useRouter()
-    // if the current button is the selected one; 
-    if (searchParams.has("i_id", { i_id }.i_id)) {
-        if (searchParams.has("variant", JSON.stringify({ variant }.variant))) {
-            return (
-                <div className="p-1">
-                    <button className="p-2 rounded bg-gray-700 text-white border border-gray-700 hover:text-black hover:bg-white" onClick={() => {
+
+    function RenderedButton (isSelected) {
+        if (isSelected == true) {
+            var buttonClass = "p-2 rounded bg-gray-700 text-white border border-gray-700 hover:text-black hover:bg-white"
+        } else {
+            var buttonClass = "p-2 rounded hover:bg-blue-100 border border-gray-200"
+        }
+        return (
+            <div className="p-1">
+                    <button className={buttonClass} onClick={() => {
                         searchParams.delete("i_id")
                         searchParams.delete("variant")
                         searchParams.append("i_id", JSON.stringify({ i_id }.i_id))
@@ -19,23 +23,14 @@ export default function IdolNameButton({ i_id, name, name2, name3, variant }) {
                     }}>
                         {name} {name2} {name3} {variant}
                     </button>
-                </div>)
-        }
-    // todo: spaghetti else 
-    } else {
-        return (
-            <div className="p-1">
-                <button className="p-2 rounded hover:bg-blue-100 border border-gray-200 " onClick={() => {
-                    searchParams.delete("i_id")
-                    searchParams.delete("variant")
-                    searchParams.append("i_id", JSON.stringify({ i_id }.i_id))
-                    searchParams.append("variant", JSON.stringify({ variant }.variant))
-                    router.push(`?${searchParams.toString()}`)
-                }}>
-                    {name} {name2} {name3} {variant}
-                </button>
-            </div>
+                </div>
         )
     }
-
+    // if the current button is the selected one; 
+    if (searchParams.has("i_id", { i_id }.i_id)) {
+        if (searchParams.has("variant", JSON.stringify({ variant }.variant))) {
+            return <RenderedButton isSelected={true}/>
+        }} else {
+        return <RenderedButton isSelected={false}/>
+    }
 }

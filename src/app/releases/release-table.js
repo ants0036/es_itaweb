@@ -1,6 +1,6 @@
 import { createClient } from '@/supabase/server.ts';
 import ReleaseListing from './release-listing.js'
-import PageTurner from './page-turner.js'
+import PageTurner from '../_components/page-turner.js'
 
 // shouldn't be using the service key but it's okay for now 
 

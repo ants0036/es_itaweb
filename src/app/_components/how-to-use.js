@@ -1,7 +1,7 @@
 "use client"
 import { CldImage } from 'next-cloudinary';
 
-export default function Disclaimer() {
+export default function HowToUse() {
     return (
         <div className="grid grid-cols-[10%_90%]">
             <div>

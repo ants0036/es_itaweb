@@ -1,8 +1,8 @@
 "use client"
 import { search } from "./actions"
-import {useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
-export default function SearchComponent({params}) {
+export default function SearchByName({params}) {
     const SearchBarParams = new URLSearchParams(useSearchParams().toString());
 
     var category = SearchBarParams.get("category") ?? ''
