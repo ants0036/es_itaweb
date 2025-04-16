@@ -1,4 +1,4 @@
-import { createClient } from '../../supabase/server'
+import { createClient } from '../../utils/supabase/server'
 
 async function calculateTotal(money) {
     var totalspent = 0; 
@@ -18,7 +18,7 @@ export default async function UserAnalytics() {
     const supabase = createClient();
     const {data: { user }} = await supabase.auth.getUser();
     // fetch all user data. 
-    const {data: userData, error: inventoryError} = await supabase.from('user_data').select().eq('user_id', user.id);
+    const {data: userData, error: CollectionError} = await supabase.from('user_data').select().eq('user_id', user.id);
 
     // convert user data to array of yen spent 
     let money = userData.map(async (val, key) => {

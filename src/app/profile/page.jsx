@@ -1,10 +1,9 @@
 import { redirect } from 'next/navigation'
-import UserInventory from './user-inventory.js'
 import Header from '../_components/header.js'
 import UserAnalytics from './user-analytics.js'
-import { createClient } from '../../supabase/server.ts'
+import { createClient } from '@/utils/supabase/server'
 import Footer from '@/app/_components/footer'
-import PageTurner from '../_components/page-turner.js'
+import ReleaseCollectionTable from '../_components/_releases-and-collection/release-collection-table.js'
 
 export default async function ProfilePage({searchParams}) {
   const supabase = createClient()
@@ -21,8 +20,7 @@ export default async function ProfilePage({searchParams}) {
       </div>
       <UserAnalytics/>
       <div className="p-5">
-        <UserInventory searchParams = {searchParams}/>
-        <PageTurner className = "py-5"/>
+        <ReleaseCollectionTable  searchParams = {searchParams} isCollection = {true}/>
       </div>
       <Footer/>
     </div>

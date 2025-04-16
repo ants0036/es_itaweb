@@ -22,9 +22,9 @@ export default function Changelog() {
                     <p className="text-xl">Ver 0.2.1 - Jan 2 2025</p>
                     <p className="text-lg"> Added </p>
                     <ul className='list-disc list-inside'>
-                        <li>Search functionality to inventory.</li>
+                        <li>Search functionality to Collection.</li>
                         <li>Pagination to the home page & profile page.</li>
-                        <li>Users can now access individual listing pages from their inventory.</li>
+                        <li>Users can now access individual listing pages from their Collection.</li>
                         <li>Basic metadata.</li>
                     </ul>
                     <p className="text-lg"> Changed </p>

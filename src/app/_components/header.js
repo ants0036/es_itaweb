@@ -1,6 +1,6 @@
 
 import Link from 'next/link'
-import { createClient } from '@/supabase/server'
+import { createClient } from '../../utils/supabase/server'
 
 async function LoginStatus() {
     const supabase = createClient()

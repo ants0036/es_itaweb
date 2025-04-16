@@ -1,8 +1,9 @@
-import { createClient } from '../../../supabase/server'
-import SquareCloudinaryImage from '@/app/_components/square-cloudinary-image'
-import IdolNameButton from './idolname-button.js'
-import Incrementer from './incrementer'
+import { createClient } from '../../../utils/supabase/server'
+import SquareCloudinaryImage from '@/app/_components/_releases-and-collection/square-cloudinary-image'
+import IdolNameButton from '../_components/idolname-button.js'
+import IncrementerForm from '../_components/incrementer-form'
 import Footer from '@/app/_components/footer'
+import Header from '@/app/_components/header'
 
 // component for a singular merch item. 
 export default async function ReleasePage({ params, searchParams }) {
@@ -12,7 +13,7 @@ export default async function ReleasePage({ params, searchParams }) {
     // query the ID of every idol that is inside this release. 
     const { data: mergeData, error: mergeError } = await supabase.from('idol-release merge').select().eq('r_id', params.id);
 
-    async function IncrementerImplementation() {
+    async function Incrementer() {
         const { data: { user } } = await supabase.auth.getUser();
     
         if (user == null) {
@@ -27,22 +28,19 @@ export default async function ReleasePage({ params, searchParams }) {
             // fetch the selected idol's information.
             const { data: selectedIdolData, error: idolError } = await supabase.from('Idols').select().eq('id', searchParams.i_id).single();
     
-            // case where there is no user data on the selected idol
+
             if (countData == null) {
-                return (
-                    <div>
-                        <p> You have selected {selectedIdolData.f_name}. You currently own 0 of this idol. </p>
-                        <Incrementer i_id={searchParams.i_id} r_id={params.id} variant={searchParams.variant} count={countData} />
-                    </div>
-                )
+                var TotalOwned = 0
             } else {
-                return (
-                    <div>
-                        <p> You have selected {selectedIdolData.f_name}. You currently own {JSON.stringify(countData.qty)} of this idol. </p>
-                        <Incrementer i_id={searchParams.i_id} r_id={params.id} variant={searchParams.variant} count={countData} />
-                    </div>
-                )
+                var TotalOwned = JSON.stringify(countData.qty)
             }
+
+            return (
+                <div>
+                    <p> You have selected {selectedIdolData.f_name}. You currently own {TotalOwned} of this idol. </p>
+                    <IncrementerForm i_id={searchParams.i_id} r_id={params.id} variant={searchParams.variant} count={countData} />
+                </div>
+            )
         // no idol selected;
         } else {
             return (
@@ -70,7 +68,7 @@ export default async function ReleasePage({ params, searchParams }) {
                 </div>
                 <div>
                     <div className ="pb-5">
-                        <IncrementerImplementation params={params} searchParams={searchParams} />
+                        <Incrementer/>
                     </div>
                     <div className="flex flex-wrap pr-10">
                         {mergeData.map(async (val, key) => {
@@ -80,7 +78,7 @@ export default async function ReleasePage({ params, searchParams }) {
                             var idolDataName2 = null
                             var idolDataName3 = null
 
-                            // if there is a second idol, try to query the third. i hate wakuwaku trip stands for making me do this 
+                            // if there is a second idol, try to query the third. i hate wakuwaku trip stands for making me do this. spaghetti 
                             if (val.i_id2 != null) {
                                 const { data: idolData2, error: idolError2 } = await supabase.from('Idols').select().eq('id', val.i_id2).single();
                                 idolDataName2 = idolData2.f_name
