@@ -9,7 +9,7 @@ export default function Changelog() {
                     <p className="text-xl">Ver 0.2.11 - Jan 10 2024</p>
                     <p className="text-lg"> Fixed </p>
                     <ul className='list-disc list-inside'>
-                        <li>Value prop on input should not be null warning on search bar.</li>
+                      <li>Value prop on input should not be null warning on search bar.</li>
                     </ul>
                     <p className="text-lg"> Changed </p>
                     <ul className='list-disc list-inside'>

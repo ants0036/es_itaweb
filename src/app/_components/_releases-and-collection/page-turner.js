@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import { useRouter, useSearchParams } from "next/navigation";
 
-// somehow, the is (pageforward) thing doesn't work here? do this later... 
+// somehow, the is (pageforward) thing doesn't work here? do this later...
 /*
 function PageButton (PageForward, pagenum) {
     const router = useRouter()
@@ -31,32 +31,44 @@ function PageButton (PageForward, pagenum) {
     )
 }*/
 
-// component at the bottom of every table that controls pagination. 
+// component at the bottom of every table that controls pagination.
 export default function PageTurner() {
-    const SearchBarParams = new URLSearchParams(useSearchParams().toString());
-    const router = useRouter()
-    const buttonClass = "p-2 rounded hover:bg-blue-100 border border-gray-200"
+  const SearchBarParams = new URLSearchParams(useSearchParams().toString());
+  const router = useRouter();
+  const buttonClass = "p-2 rounded hover:bg-blue-100 border border-gray-200";
 
-    var pagenum = SearchBarParams.get("page")
-    if (pagenum == null) {
-        pagenum = 0
-    }
+  var pagenum = SearchBarParams.get("page");
+  if (pagenum == null || pagenum == 0) {
+    pagenum = 0;
+    var previouspage = 0;
+  } else {
+    var previouspage = pagenum - 1;
+  }
 
-    return (
-        <div>
-            <button className={buttonClass} onClick={() => {
-                SearchBarParams.delete("page")
-                SearchBarParams.append("page", pagenum - 1)
-                router.push(`?${SearchBarParams.toString()}`)
-                router.refresh()
-            }}> Previous Page </button>
-            <button className={buttonClass} onClick={() => {
-                SearchBarParams.delete("page")
-                SearchBarParams.append("page", pagenum + 1)
-                router.push(`?${SearchBarParams.toString()}`)
-                router.refresh()
-            }}> Next Page </button>
-        </div>
-    )
-
+  return (
+    <div>
+      <button
+        className={buttonClass}
+        onClick={() => {
+          SearchBarParams.delete("page");
+          SearchBarParams.append("page", previouspage);
+          router.push(`?${SearchBarParams.toString()}`);
+          router.refresh();
+        }}
+      >
+        Previous Page
+      </button>
+      <button
+        className={buttonClass}
+        onClick={() => {
+          SearchBarParams.delete("page");
+          SearchBarParams.append("page", pagenum + 1);
+          router.push(`?${SearchBarParams.toString()}`);
+          router.refresh();
+        }}
+      >
+        Next Page{" "}
+      </button>
+    </div>
+  );
 }

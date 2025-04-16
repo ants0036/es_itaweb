@@ -1,5 +1,6 @@
 import { createClient } from '../../utils/supabase/server'
 
+// spaghetti code?
 async function calculateTotal(money) {
     var totalspent = 0; 
     for (let i = 0; i < money.length; i++) {
@@ -14,6 +15,7 @@ async function calculateTotal(money) {
     return totalspent;
 }
 
+// component that shows you how much you spent in yen, USD, and CAD
 export default async function UserAnalytics() {
     const supabase = createClient();
     const {data: { user }} = await supabase.auth.getUser();
