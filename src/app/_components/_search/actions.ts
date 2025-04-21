@@ -8,7 +8,7 @@ export function search (formData: FormData) {
 
     // if no search was inputted / search reset
     if (name == '' && category == '') {
-        console.log ("option 1") 
+        console.log ("option 1")
         redirect(`/${(params)}?`)
     // if category button was hit but no name 
     } else if (name == '' && category != '') {

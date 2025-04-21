@@ -17,6 +17,7 @@ export default async function ReleaseCollectionTable({
   var currentPage = page * 25;
   var nextPage = (page + 1) * 25 - 1;
 
+  // query based off of search params
   if (category != "" && releaseName != "") {
     var { data: releases } = await supabase
       .from("Releases")
