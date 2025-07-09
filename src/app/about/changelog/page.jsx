@@ -6,7 +6,7 @@ export default function Changelog() {
       <Header />
       <div className="grid place-content-center">
         <div className="py-4">
-          <p className="text-xl">Ver 0.2.2 - Apr ?? 2024</p>
+          <p className="text-xl">Ver 0.2.2 - Apr 21 2024</p>
           <p className="text-lg"> Changed </p>
           <ul className="list-disc list-inside">
             <li>Reformatted all code w/ prettier.</li>
