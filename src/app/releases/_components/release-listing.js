@@ -6,8 +6,8 @@ import Link from "next/link";
 export default function ReleaseListing({ val, key }) {
   const main_src = val.name.concat(" Main");
   return (
-    <div key={key}>
-      <a href={`/releases/${encodeURIComponent(val.id)}`}>
+    <div key={key} className ="w-2xs">
+      <a className = "text-wrap" href={`/releases/${encodeURIComponent(val.id)}`}>
         <div className="py-2">
           <CldImage
             className="border-slate-900 border border-solid rounded"
@@ -18,7 +18,7 @@ export default function ReleaseListing({ val, key }) {
           />
         </div>
       </a>
-      <p className="text-xs"> {val.release_date} </p>
+      <p className="text-xs "> {val.release_date} </p>
       <Link
         className="text-sky-600 font-semibold"
         href={`/releases/${encodeURIComponent(val.id)}`}

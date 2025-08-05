@@ -36,13 +36,18 @@ export default function PageTurner() {
   const SearchBarParams = new URLSearchParams(useSearchParams().toString());
   const router = useRouter();
   const buttonClass = "p-2 rounded hover:bg-blue-100 border border-gray-200";
-
+ 
   var pagenum = SearchBarParams.get("page");
-  if (pagenum == null || pagenum == 0) {
-    pagenum = 0;
+  if (pagenum == null) {
+    var pagenumInt = 0;
     var previouspage = 0;
   } else {
-    var previouspage = pagenum - 1;
+    var pagenumInt = pagenum.parseInt();
+    if (pagenumInt == 0) {
+      var previouspage = 0;
+    } else {
+       var previouspage = pagenum - 1;
+    }
   }
 
   return (

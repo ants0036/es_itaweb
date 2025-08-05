@@ -80,7 +80,7 @@ export default async function ReleaseCollectionTable({
               .eq("id", val.i_id)
               .single();
             return (
-              <div className="p-3" key={key}>
+              <div className="p-3 basis-2xs" key={key}>
                 <ReleaseListing val={rData} key={key} />
                 <p>
                   {" "}
@@ -96,7 +96,7 @@ export default async function ReleaseCollectionTable({
   } else {
     return (
       <div className>
-        <div className=" flex flex-wrap justify-items center">
+        <div className="grid grid-cols-4">
           {releases.map((val, key) => {
             return (
               <div className="px-3 pb-3" key={key}>
